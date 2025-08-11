@@ -1,28 +1,44 @@
 services:
-  nginx-proxy:
-    image: jwilder/nginx-proxy
-    container_name: nginx-proxy
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - proxy
     ports:
       - 80:80
       - 443:443
+      - 443:443/tcp
+      - 443:443/udp
+    environment:
+      CF_DNS_API_TOKEN: ${CLOUDFLARE_PROXY_API_TOKEN}
+      TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      - /etc/nginx/certs:/etc/nginx/certs:ro
-      - /etc/nginx/vhost.d
-      - /usr/share/nginx/html
-    labels:
-      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
-    restart: unless-stopped
-
-  letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: letsencrypt
-    volumes:
-      - /etc/nginx/certs:/etc/nginx/certs:rw
+      - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    volumes_from:
-      - nginx-proxy:rw
-    restart: unless-stopped
+      - ./traefik/traefik.yml:/traefik.yml:ro
+      - ./traefik/acme.json:/acme.json
+      - ./traefik/config.yml:/config.yml:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.local.${DOMAIN}`)"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.local.${DOMAIN}`)"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=${DOMAIN}"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.${DOMAIN}"
+      - "traefik.http.routers.traefik-secure.tls.domains[1].main=local.${DOMAIN}"
+      - "traefik.http.routers.traefik-secure.tls.domains[1].sans=*.local.${DOMAIN}"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
 
   cloudflare-ddns:
     image: favonia/cloudflare-ddns:latest
@@ -38,127 +54,32 @@ services:
       - no-new-privileges:true
     user: "1000:1000"
     environment:
-      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_DDNS_API_TOKEN}
       - DOMAINS=${DOMAIN}
       - PROXIED=true
       - IP6_PROVIDER=none
     restart: unless-stopped
 
-  searxng:
-    image: docker.io/searxng/searxng:latest
-    container_name: searxng
-    networks:
-      - searxng
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
     ports:
-      - "8888:8080"
-    volumes:
-      - ./searxng:/etc/searxng:rw
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "31415:80/tcp"
     environment:
-      - SEARXNG_BASE_URL=${BASE_URL_HTTP}:8888/
-      - PUID=1000
-      - PGID=1000
-    cap_drop:
-      - ALL
-    cap_add:
-      - CHOWN
-      - SETGID
-      - SETUID
-    restart: unless-stopped
-
-  searxng-db:
-    image: docker.io/valkey/valkey:7-alpine
-    container_name: searxng-db
-    command: valkey-server --save 30 1 --loglevel warning
+      TZ: ${TIMEZONE}
+      FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
+    volumes:
+      - './pihole:/etc/pihole'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole-primary.rule=Host(`pihole-primary.local.${DOMAIN}`)"
+      - "traefik.http.routers.pihole-primary.entrypoints=https"
+      - "traefik.http.routers.pihole-primary.tls=true"
+      - "traefik.http.services.pihole-primary.loadbalancer.server.port=80"
     networks:
-      - searxng
-    environment:
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /mnt/md0/web/searxng:/data
-    cap_drop:
-      - ALL
-    cap_add:
-      - CHOWN
-      - SETGID
-      - SETUID
-      - DAC_OVERRIDE
-    restart: unless-stopped
-
-  invidious:
-    image: quay.io/invidious/invidious:latest
-    container_name: invidious
-    ports:
-      - "4444:3000"
-    environment:
-      INVIDIOUS_CONFIG: |
-        db:
-          dbname: ${INVIDIOUS_DB_NAME}
-          user: ${INVIDIOUS_DB_USER}
-          password: ${INVIDIOUS_DB_PASSWORD}
-          host: invidious-db
-          port: 5432
-        check_tables: true
-        signature_server: inv-sig-helper:12999
-        visitor_data: ${INVIDIOUS_VISITOR_DATA}
-        po_token: ${INVIDIOUS_PO_TOKEN}
-        hmac_key: ${INVIDIOUS_HMAC_KEY}
-        default_user_preferences:
-          locale: en-US
-          region: US
-          dark_mode: "dark"
-          quality: dash
-          quality_dash: 1440p
-          volume: 50
-    healthcheck:
-      test: wget -nv --tries=1 --spider ${BASE_URL_HTTP}:4444/api/v1/comments/jNQXAC9IVRw || exit 1
-      interval: 30s
-      timeout: 5s
-      retries: 2
-    depends_on:
-      - invidious-db
-    restart: unless-stopped
-
-  inv-sig-helper:
-    image: quay.io/invidious/inv-sig-helper:latest
-    container_name: inv-sig-helper
-    command: ["--tcp", "0.0.0.0:12999"]
-    environment:
-      - RUST_LOG=info
-    cap_drop:
-      - ALL
-    read_only: true
-    security_opt:
-      - no-new-privileges:true
-    restart: unless-stopped
-
-  invidious-db:
-    image: docker.io/library/postgres:14
-    container_name: invidious-db
-    volumes:
-      - /mnt/md0/web/invidious/postgresql:/var/lib/postgresql/data
-      - ./invidious/config/sql:/config/sql
-      - ./invidious/init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh
-    environment:
-      POSTGRES_DB: ${INVIDIOUS_DB_NAME}
-      POSTGRES_USER: ${INVIDIOUS_DB_USER}
-      POSTGRES_PASSWORD: ${INVIDIOUS_DB_PASSWORD}
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-    restart: unless-stopped
-
-  www:
-    image: nginx:latest
-    container_name: www
-    expose:
-      - 80
-    volumes:
-      - /mnt/md0/web/www/dist:/usr/share/nginx/html:ro
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    environment:
-      - VIRTUAL_HOST=${DOMAIN},www.${DOMAIN}
-      - LETSENCRYPT_HOST=${DOMAIN},www.${DOMAIN}
-      - LETSENCRYPT_EMAIL=${EMAIL}
+      - proxy
     restart: unless-stopped
 
   wireguard:
@@ -181,35 +102,59 @@ services:
     sysctls:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wireguard.rule=Host(`wireguard.local.${DOMAIN}`)"
+      - "traefik.http.routers.wireguard.entrypoints=https"
+      - "traefik.http.routers.wireguard.tls=true"
+      - "traefik.http.services.wireguard.loadbalancer.server.port=51821"
+    networks:
+      - proxy
     restart: unless-stopped
 
-  webui:
-    image: ghcr.io/open-webui/open-webui:main
-    container_name: webui
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    networks:
+      - proxy
     ports:
-     - 11435:8080/tcp
+      - "8888:8080"
+    volumes:
+      - ./searxng:/etc/searxng:rw
     environment:
-     - OLLAMA_BASE_URL=${BASE_URL_HTTP}:11434
-    volumes:
-      - /mnt/md0/web/ollama/webui:/app/backend/data
-    depends_on:
-     - ollama
+      - SEARXNG_BASE_URL=https://searxng.local.${DOMAIN}
+      - PUID=1000
+      - PGID=1000
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.searxng.rule=Host(`searxng.local.${DOMAIN}`)"
+      - "traefik.http.routers.searxng.entrypoints=https"
+      - "traefik.http.routers.searxng.tls=true"
+      - "traefik.http.services.searxng.loadbalancer.server.port=8080"
     restart: unless-stopped
 
-  ollama:
-    image: ollama/ollama
-    container_name: ollama
+  www:
+    image: nginx:latest
+    container_name: www
     ports:
-     - 11434:11434/tcp
+      - "8080:80"
     volumes:
-      - /mnt/md0/web/ollama/ollama:/root/.ollama
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              device_ids: ['all']
-              capabilities: [gpu]
+      - ./www/:/usr/share/nginx/html:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.www.rule=Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`)"
+      - "traefik.http.routers.www.entrypoints=https"
+      - "traefik.http.routers.www.tls=true"
+      - "traefik.http.services.www.loadbalancer.server.port=80"
+    networks:
+      - proxy
     restart: unless-stopped
 
   ntfy:
@@ -226,9 +171,6 @@ services:
       NTFY_ATTACHMENT_CACHE_DIR: /var/lib/ntfy/attachments
       NTFY_ENABLE_LOGIN: true
       TZ: ${TIMEZONE}
-      VIRTUAL_HOST: "ntfy.${DOMAIN}"
-      LETSENCRYPT_HOST: "ntfy.${DOMAIN}"
-      LETSENCRYPT_EMAIL: ${EMAIL}
     user: 1000:1000
     volumes:
       - ./ntfy/var/cache:/var/cache/ntfy
@@ -236,9 +178,35 @@ services:
       - ./ntfy/var/lib:/var/lib/ntfy
     ports:
       - 3003:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ntfy.rule=Host(`ntfy.${DOMAIN}`)"
+      - "traefik.http.routers.ntfy.entrypoints=https"
+      - "traefik.http.routers.ntfy.tls=true"
+      - "traefik.http.services.ntfy.loadbalancer.server.port=80"
+    networks:
+      - proxy
+    restart: unless-stopped
+
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    ports:
+      - 4550:80
+    environment:
+      DOMAIN: https://vault.local.${DOMAIN}
+    volumes:
+      - ./vaultwarden:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vaultwarden.rule=Host(`vault.local.${DOMAIN}`)"
+      - "traefik.http.routers.vaultwarden.entrypoints=https"
+      - "traefik.http.routers.vaultwarden.tls=true"
+      - "traefik.http.services.vaultwarden.loadbalancer.server.port=80"
+    networks:
+      - proxy
     restart: unless-stopped
 
 networks:
-  searxng:
-    ipam:
-      driver: default
+  proxy:
+    external: true
