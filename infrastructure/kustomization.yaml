@@ -1,2 +1,4 @@
+---
 resources:
   - ./metallb-system
+  - ./secret.yaml
