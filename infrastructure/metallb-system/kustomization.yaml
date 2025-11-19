@@ -2,7 +2,7 @@
 namespace: metallb-system
 resources:
   - namespace.yaml
-  - helmrepository.yaml
   - helmrelease.yaml
+  - helmrepository.yaml
   - ipaddresspool.yaml
   - l2advertisement.yaml
