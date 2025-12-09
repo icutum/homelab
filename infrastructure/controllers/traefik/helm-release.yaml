@@ -1,0 +1,48 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik-helmrelease
+  namespace: traefik
+spec:
+  interval: 10m0s
+  chart:
+    spec:
+      chart: traefik
+      version: 37.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: traefik-helmrepository
+        namespace: flux-system
+  values:
+    global:
+      sendAnonymousUsage: false
+      checkNewVersion: false
+    additionalArguments:
+      - "--serversTransport.insecureSkipVerify=true"
+      - "--log.level=DEBUG"
+    deployment:
+      kind: DaemonSet
+    ports:
+      web:
+        port: 80
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
+      websecure:
+        port: 443
+        exposedPort: 443
+        tls:
+          enabled: true
+          options: "default"
+    providers:
+      kubernetesCRD:
+        ingressClass: traefik-external
+      kubernetesIngress:
+        publishedService:
+          enabled: false
+    service:
+      annotations:
+        metallb.universe.tf/address-pool: metallb-system-ipaddresspool
