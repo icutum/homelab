@@ -2,7 +2,8 @@
 
 ## 📕 Overview
 
-This is a GitOps FluxCD based repository that manages my K3s Kubernetes cluster with each node virtualized through Proxmox. It was deployed using the following Ansible script: https://github.com/k3s-io/k3s-ansible
+This is a GitOps FluxCD based repository that manages my K3s Kubernetes cluster with each node virtualized through Proxmox.
+It was deployed using the following Ansible playbook: https://github.com/k3s-io/k3s-ansible
 
 I'm currently building this homelab to learn Kubernetes and experiment with it
 
@@ -20,8 +21,8 @@ All nodes were deployed with a Cloud-Init template
 
 | Type   | CPU     | RAM  | OS        |
 | ------ | ------- | ---- | --------- |
-| Server | 2 cores | 2GiB | Debian 13 |
-| Server | 2 cores | 2GiB | Debian 13 |
-| Server | 2 cores | 2GiB | Debian 13 |
+| Server | 2 cores | 4GiB | Debian 13 |
+| Server | 2 cores | 4GiB | Debian 13 |
+| Server | 2 cores | 4GiB | Debian 13 |
 | Agent  | 4 cores | 8GiB | Debian 13 |
 | Agent  | 4 cores | 8GiB | Debian 13 |
