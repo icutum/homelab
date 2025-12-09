@@ -45,4 +45,4 @@ spec:
           enabled: false
     service:
       annotations:
-        metallb.universe.tf/address-pool: metallb-system-ipaddresspool
+        metallb.io/address-pool: metallb-system-ipaddresspool
