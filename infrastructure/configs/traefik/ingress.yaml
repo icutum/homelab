@@ -12,9 +12,9 @@ spec:
   routes:
     - match: Host(`traefik.local.icutum.es`)
       kind: Rule
-      middlewares:
-        - name: traefik-dashboard-auth
-          namespace: traefik
       services:
         - name: api@internal
           kind: TraefikService
+      middlewares:
+        - name: traefik-dashboard-basicauth
+          namespace: traefik
