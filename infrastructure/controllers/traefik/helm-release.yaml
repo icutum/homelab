@@ -21,8 +21,6 @@ spec:
     additionalArguments:
       - "--serversTransport.insecureSkipVerify=true"
       - "--log.level=DEBUG"
-    deployment:
-      kind: DaemonSet
     ports:
       web:
         port: 80
@@ -33,7 +31,6 @@ spec:
             permanent: true
       websecure:
         port: 443
-        exposedPort: 443
         tls:
           enabled: true
           options: "default"
