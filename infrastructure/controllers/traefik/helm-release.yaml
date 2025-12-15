@@ -21,6 +21,8 @@ spec:
     additionalArguments:
       - "--serversTransport.insecureSkipVerify=true"
       - "--log.level=DEBUG"
+    deployment:
+      replicas: 2
     ports:
       web:
         port: 80
