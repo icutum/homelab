@@ -1,0 +1,37 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+    name: cert-manager-cluster-issuer
+    namespace: cert-manager
+spec:
+    acme:
+        server: https://acme-staging-v02.api.letsencrypt.org/directory
+        email: ENC[AES256_GCM,data:zsE0dSfdrVIrroclrgUdx7Dk,iv:2D9g7hqc8QowvkxbeZSCK3Apuy6Wc49oOfYVtQe0lKk=,tag:2sRwLVnKHHcGU92perbLgw==,type:str]
+        privateKeySecretRef:
+            name: cert-manager-cluster-issuer
+        solvers:
+            - dns01:
+                cloudflare:
+                    email: ENC[AES256_GCM,data:0cv7KzwLIj2Xbydj35YHP/2W,iv:Y8TyAMCiSbM5je5G+CRBLjPaXCV97JNbzEhhyms04PU=,tag:smzPuvkW9doWi7vdzsCe8w==,type:str]
+                    apiTokenSecretRef:
+                        name: cert-manager-cloudflare-token
+                        key: cloudflare-token
+              selector:
+                dnsZones:
+                    - icutum.es
+sops:
+    age:
+        - recipient: age14e9960ys3tqpnr40memrdp8uac0f86wv326ykwkwrufgrv4a5dtsd58zd2
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBRK21obnlFYjl3MGxYY3pV
+            WEtENjVPcTVRTktMSDNacEdKT2YySzFVTlZzCjJoRVBuMUF0bjNPRkI4SHMxckVQ
+            Slh5bDJTQ0FxMlpFTG1ydFN6eURHT1kKLS0tIFhReTU0VTJHNmFuUmpoRHZoK3I5
+            RDNGSUc1YmtaYWJaYnlocTZYTnZRTUEKphBgs3zsr2gLupj0A/kJwRg0PyTpRC+y
+            PRv4bEdUOXAEuReGX6CmncxyjjuLfLXmoaXheGB9moC/+nqb48yldA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-22T22:01:58Z"
+    mac: ENC[AES256_GCM,data:K0se7y6DCXjRUCeY8tHQ2TsoqeXrYyl4pvuidxvvxDRBDwn8jV4Gt1oJX89vdzd+Q+ZtQRvau01heEJ+iFvmUWz8v4tlLitc0Her7XXzHiufb6retz3MwOFsSyBrFY1fB/K4QnCWY2yQF4/WQ3lN9XacaaG5KCKmPOa623VBfdo=,iv:RkvK1WVCnW/4DKXL2WT66GrxjW759NhpkXZdnyXV6Y8=,tag:AcaiKGFPULqL/9m8swDHrQ==,type:str]
+    encrypted_regex: ^(data|stringData|email)$
+    version: 3.11.0

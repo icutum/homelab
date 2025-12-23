@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./metallb-system
   - ./traefik
+  - ./cert-manager

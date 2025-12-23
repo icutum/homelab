@@ -18,3 +18,5 @@ spec:
       middlewares:
         - name: traefik-dashboard-basicauth
           namespace: traefik
+  tls:
+    secretName: traefik-local-icutum-es-tls
