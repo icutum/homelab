@@ -21,6 +21,8 @@ spec:
     additionalArguments:
       - "--serversTransport.insecureSkipVerify=true"
       - "--log.level=DEBUG"
+    deployment:
+      kind: DaemonSet
     ports:
       web:
         port: 80
