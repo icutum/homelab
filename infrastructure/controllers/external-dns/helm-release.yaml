@@ -19,12 +19,8 @@ spec:
       name: cloudflare
     domainFilters:
       - icutum.es
-    sources:
-      - public-ip
-    extraArgs:
-      - --fqdn-template=icutum.es
     policy: sync
-    interval: 1m
+    interval: 10m0s
     txtOwnerId: external-dns
     env:
       - name: CF_API_TOKEN
