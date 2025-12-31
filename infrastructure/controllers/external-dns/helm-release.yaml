@@ -22,8 +22,7 @@ spec:
     sources:
       - public-ip
     extraArgs:
-      - --public-ip-provider=external
-      - --public-ip-hostname=icutum.es
+      - --fqdn-template=icutum.es
     policy: sync
     interval: 1m
     txtOwnerId: external-dns
