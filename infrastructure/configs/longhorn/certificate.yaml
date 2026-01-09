@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: longhorn-certificate
+  namespace: longhorn
+spec:
+  secretName: longhorn-local-icutum-es-tls
+  issuerRef:
+    name: cert-manager-cluster-issuer
+    kind: ClusterIssuer
+  commonName: "longhorn.local.icutum.es"
+  dnsNames:
+    - "longhorn.local.icutum.es"
