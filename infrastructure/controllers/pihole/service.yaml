@@ -10,3 +10,4 @@ spec:
       protocol: TCP
       port: 31415
       targetPort: 31415
+  clusterIP: None
