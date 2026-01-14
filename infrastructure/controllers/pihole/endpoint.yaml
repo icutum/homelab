@@ -8,7 +8,7 @@ metadata:
     kubernetes.io/service-name: pihole-service-frontend
 addressType: IPv4
 ports:
-    appProtocol: http
+  - appProtocol: http
     protocol: TCP
     port: 31415
 endpoints:
