@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pihole-frontend
+  name: pihole-service-frontend
   namespace: pihole
 spec:
   ports:
