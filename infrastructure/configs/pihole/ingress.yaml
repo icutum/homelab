@@ -14,6 +14,6 @@ spec:
       kind: Rule
       services:
         - name: pihole-service-frontend
-          port: 31415
+          port: 80
   tls:
     secretName: pihole-local-icutum-es-tls

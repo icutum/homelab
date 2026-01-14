@@ -6,8 +6,5 @@ metadata:
   namespace: pihole
 spec:
   ports:
-    - name: http
-      protocol: TCP
-      port: 31415
+      port: 80
       targetPort: 31415
-  clusterIP: None
