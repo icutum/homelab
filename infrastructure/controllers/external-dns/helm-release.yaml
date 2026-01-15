@@ -19,6 +19,7 @@ spec:
       name: pihole
     extraArgs:
       - --source=traefik-proxy
+      - --traefik-disable-legacy 	
       - --pihole-api-version=6
       - --pihole-tls-skip-verify
       - --pihole-server=http://192.168.1.99
