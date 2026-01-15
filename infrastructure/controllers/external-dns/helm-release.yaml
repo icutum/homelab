@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: external-dns-helmrelease
+  namespace: external-dns
+spec:
+  interval: 10m0s
+  chart:
+    spec: 
+      chart: external-dns
+      version: 1.19.0
+      sourceRef:
+        kind: HelmRepository
+        name: external-dns-helmrepository
+        namespace: flux-system
+  values:
+    provider:
+      name: pihole
+    extraArgs:
+      - --source=traefik-proxy
+      - --pihole-api-version=6
+      - --pihole-tls-skip-verify
+      - --pihole-server=http://192.168.1.99
+    registry: noop
+    domainFilters: ["local.icutum.es"]
+    env:
+      - name: EXTERNAL_DNS_PIHOLE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: external-dns-pihole-password
+            key: pihole-password

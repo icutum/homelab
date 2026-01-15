@@ -6,6 +6,7 @@ metadata:
   namespace: longhorn
   annotations:
     kubernetes.io/ingress.class: traefik-external
+    external-dns.alpha.kubernetes.io/hostname: longhorn.local.icutum.es
 spec:
   entryPoints:
     - websecure
