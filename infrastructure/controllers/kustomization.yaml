@@ -6,4 +6,3 @@ resources:
   - ./traefik
   - ./cert-manager
   - ./longhorn
-  - ./pihole
