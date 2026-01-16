@@ -19,7 +19,6 @@ spec:
       name: pihole
     sources:
       - traefik-proxy
-      - service
     extraArgs:
       - --pihole-api-version=6
       - --pihole-tls-skip-verify

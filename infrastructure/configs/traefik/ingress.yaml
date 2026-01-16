@@ -6,7 +6,6 @@ metadata:
   namespace: traefik
   annotations:
     kubernetes.io/ingress.class: traefik-external
-    external-dns.alpha.kubernetes.io/hostname: traefik.local.icutum.es
 spec:
   entryPoints:
     - websecure
