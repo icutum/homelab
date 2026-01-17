@@ -24,6 +24,7 @@ spec:
       - --pihole-tls-skip-verify
       - --pihole-server=http://192.168.1.99
     registry: noop
+    policy: sync
     logLevel: debug
     env:
       - name: EXTERNAL_DNS_PIHOLE_PASSWORD
