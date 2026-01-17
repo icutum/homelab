@@ -24,8 +24,6 @@ spec:
       - --pihole-tls-skip-verify
       - --pihole-server=http://192.168.1.99
     registry: noop
-    domainFilters: 
-      - local.icutum.es
     logLevel: debug
     env:
       - name: EXTERNAL_DNS_PIHOLE_PASSWORD
