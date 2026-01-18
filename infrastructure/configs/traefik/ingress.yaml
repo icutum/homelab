@@ -9,7 +9,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: traefik-traefik-dashboard-basicauth@kubernetescrd
 spec:
-  ingressClassName: traefik
+  ingressClassName: traefik-external
   tls:
     - hosts:
         - traefik.local.icutum.es
