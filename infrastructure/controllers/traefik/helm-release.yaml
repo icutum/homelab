@@ -22,7 +22,6 @@ spec:
       - "--api.insecure=true"
       - "--api.dashboard=true"
       - "--serversTransport.insecureSkipVerify=true"
-      - "--log.level=DEBUG"
     deployment:
       kind: DaemonSet
     ports:
