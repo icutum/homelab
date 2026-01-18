@@ -24,7 +24,6 @@ spec:
       - --pihole-server=http://192.168.1.99
       - --pihole-api-version=6
       - --pihole-tls-skip-verify
-      - --ingress-class=traefik-external
     registry: noop
     policy: sync
     logLevel: debug
