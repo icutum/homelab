@@ -6,6 +6,7 @@ metadata:
   namespace: traefik
   annotations:
     external-dns.alpha.kubernetes.io/hostname: traefik.local.icutum.es
+    traefik.ingress.kubernetes.io/router.tls: true
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: traefik-traefik-dashboard-basicauth@kubernetescrd
 spec:
