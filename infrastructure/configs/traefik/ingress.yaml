@@ -20,7 +20,7 @@ spec:
               service:
                 name: traefik
                 port:
-                  number: 8080
+                  number: 9000
   tls:
     - hosts:
         - traefik.local.icutum.es
