@@ -25,6 +25,9 @@ spec:
     deployment:
       kind: DaemonSet
     ports:
+      traefik:
+        expose:
+          default: true
       web:
         port: 80
         redirections:
