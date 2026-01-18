@@ -19,7 +19,6 @@ spec:
       sendAnonymousUsage: false
       checkNewVersion: false
     additionalArguments:
-      - "--api.dashboard=true"
       - "--serversTransport.insecureSkipVerify=true"
       - "--log.level=DEBUG"
     deployment:
