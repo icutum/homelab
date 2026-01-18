@@ -9,6 +9,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: traefik-traefik-dashboard-basicauth@kubernetescrd
 spec:
+  ingressClassName: traefik
   rules:
     - host: traefik.local.icutum.es
       http:

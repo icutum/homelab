@@ -36,6 +36,8 @@ spec:
         tls:
           enabled: true
           options: "default"
+    ingressClass:
+      name: traefik
     providers:
       kubernetesIngress:
         ingressClass: traefik
