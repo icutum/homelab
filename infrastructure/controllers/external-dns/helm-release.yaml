@@ -18,6 +18,7 @@ spec:
     provider:
       name: pihole
     sources:
+      - ingress
       - traefik-proxy
     extraArgs:
       - --pihole-server=http://192.168.1.99
