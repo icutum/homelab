@@ -30,7 +30,7 @@ All nodes were deployed with a Cloud-Init template
 
 ## 🔐 Security
 
-Secrets are managed with [SOPS](https://getsops.io/) in combination with [age](https://github.com/FiloSottile/age) to encrypt the values in the repository, and are decrypted during FluxCD reconciliation
+Secrets are managed with [SOPS](https://getsops.io/) in combination with [age](https://github.com/FiloSottile/age) to encrypt the values in the repository, and decrypt them during FluxCD reconciliation
 
 ## 🤖 Automation
 
