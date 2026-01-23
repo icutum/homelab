@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: 38.0.2
+      version: 39.0.0
       sourceRef:
         kind: HelmRepository
         name: traefik-helmrepository
@@ -30,16 +30,18 @@ spec:
           default: true
       web:
         port: 80
-        redirections:
-          entryPoint:
-            to: websecure
-            scheme: https
-            permanent: true
+        http:
+          redirections:
+            entryPoint:
+              to: websecure
+              scheme: https
+              permanent: true
       websecure:
         port: 443
-        tls:
-          enabled: true
-          options: "default"
+        http:
+          tls:
+            enabled: true
+            options: "default"
     ingressClass:
       name: traefik
     providers:
