@@ -17,3 +17,4 @@ spec:
   values:
     defaultSettings:
       allowCollectingLonghornUsageMetrics: false
+      defaultReplicaCount: 2
