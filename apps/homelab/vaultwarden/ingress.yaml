@@ -17,7 +17,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: vaultwarden
+                name: vaultwarden-helmrelease
                 port:
                   number: 80
   tls:
