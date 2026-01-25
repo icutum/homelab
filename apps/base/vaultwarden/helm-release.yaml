@@ -1,0 +1,35 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vaultwarden-helmrelease
+  namespace: vaultwarden
+spec:
+  interval: 10m0s
+  chart:
+    spec:
+      chart: app-template
+      version: 4.6.2
+      sourceRef:
+        kind: HelmRepository
+        name: vaultwarden-helmrepository
+        namespace: flux-system
+  values:
+    controllers:
+      vaultwarden:
+        containers:
+          app:
+            image:
+              repository: vaultwarden/server
+              tag: 1.35.2
+    service:
+      app:
+        controller: vaultwarden
+        ports:
+          http:
+            port: 80
+    persistence:
+      storage:
+        existingClaim: vaultwarden-pvc
+        globalMounts:
+          - path: /data
