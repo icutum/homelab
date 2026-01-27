@@ -42,6 +42,8 @@ spec:
           tls:
             enabled: true
             options: "default"
+        http3:
+          enabled: true
     ingressClass:
       name: traefik
     providers:
