@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kube-prometheus-stack-grafana-certificate
+  namespace: kube-prometheus-stack
+spec:
+  secretName: grafana-local-icutum-es-tls
+  issuerRef:
+    name: cert-manager-cluster-issuer
+    kind: ClusterIssuer
+  commonName: "grafana.local.icutum.es"
+  dnsNames:
+    - "grafana.local.icutum.es"
