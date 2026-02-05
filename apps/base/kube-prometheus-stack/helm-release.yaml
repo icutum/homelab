@@ -29,11 +29,12 @@ spec:
       jobNameOverride: "k3s-server"
     kubeProxy:
       jobNameOverride: "k3s-server"
-    dashboards:
-      default:
-        flux-cluster:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
-          datasource: Prometheus
-        flux-control-plane:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
-          datasource: Prometheus
+    grafana:
+      dashboards:
+        default:
+          flux-cluster:
+            url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
+            datasource: Prometheus
+          flux-control-plane:
+            url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
+            datasource: Prometheus
