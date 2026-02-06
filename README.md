@@ -9,7 +9,7 @@ I'm currently building this homelab to learn Kubernetes and experiment with it
 
 ## ⚙️ Hardware
 
-I'm hosting all my virtualized nodes in a custom built server made from parts from my old gaming PC
+I'm hosting all my virtualized nodes in a custom built server made of parts from my old gaming PC
 
 | CPU      | RAM   | OS           |
 | -------- | ----- | ------------ |
