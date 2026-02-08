@@ -1,0 +1,16 @@
+---
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: external-dns-proxmox-endpointslice
+  namespace: external-dns
+  labels:
+    kubernetes.io/service-name: external-dns-proxmox-service
+addressType: IPv4
+ports:
+  - name: https
+    protocol: TCP
+    port: 8006
+endpoints:
+  - addresses:
+      - 192.168.1.2

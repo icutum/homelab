@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: external-dns-proxmox-ingress
+  namespace: external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: proxmox.local.icutum.es
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: proxmox.local.icutum.es
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: external-dns-proxmox-service
+                port:
+                  number: 8006
+  tls:
+    - hosts:
+        - proxmox.local.icutum.es
+      secretName: proxmox-local-icutum-es-tls
