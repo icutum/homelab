@@ -14,9 +14,9 @@ spec:
         kind: HelmRepository
         name: traefik-helmrepository
         namespace: flux-system
-    dependsOn:
-      - name: infrastructure-configs
-        namespace: flux-system
+  dependsOn:
+    - name: metallb-system-l2advertisement
+      namespace: metallb-system
   values:
     global:
       sendAnonymousUsage: false
