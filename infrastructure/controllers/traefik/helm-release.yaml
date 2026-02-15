@@ -14,6 +14,9 @@ spec:
         kind: HelmRepository
         name: traefik-helmrepository
         namespace: flux-system
+      dependsOn:
+        - name: infrastructure-configs
+          namespace: flux-system
   values:
     global:
       sendAnonymousUsage: false
