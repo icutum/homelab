@@ -6,3 +6,5 @@ resources:
   - ./traefik
   - ./longhorn
   - ./external-dns
+  - ./actions-runner-controller
+  - ./actions-runner-scale-set
