@@ -8,4 +8,4 @@ spec:
   interval: 10m0s
   chartRef:
     kind: OCIRepository
-    name: actions-runner-controller-helmrepository
+    name: actions-runner-controller-ocirepository

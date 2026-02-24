@@ -8,7 +8,7 @@ spec:
   interval: 10m0s
   chartRef:
     kind: OCIRepository
-    name: actions-runner-scale-set-helmrepository
+    name: actions-runner-scale-set-ocirepository
   values:
     githubConfigUrl: https://github.com/icutum/infra
     githubConfigSecret: actions-runner-scale-set-github-token
