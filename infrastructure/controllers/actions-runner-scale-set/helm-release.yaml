@@ -10,5 +10,6 @@ spec:
     kind: OCIRepository
     name: actions-runner-scale-set-ocirepository
   values:
+    runnerScaleSetName: arc-runner-set
     githubConfigUrl: https://github.com/icutum/infra
     githubConfigSecret: actions-runner-scale-set-github-token
