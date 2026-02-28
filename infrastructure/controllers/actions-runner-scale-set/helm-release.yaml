@@ -13,3 +13,4 @@ spec:
     runnerScaleSetName: arc-runner-set
     githubConfigUrl: https://github.com/icutum/infra
     githubConfigSecret: actions-runner-scale-set-github-token
+    minRunners: 1
