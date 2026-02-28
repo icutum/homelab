@@ -14,3 +14,8 @@ spec:
     githubConfigUrl: https://github.com/icutum/infra
     githubConfigSecret: actions-runner-scale-set-github-token
     minRunners: 1
+    template:
+      spec:
+        containers:
+          - name: runner
+            image: ghcr.io/home-operations/actions-runner:2.332.0@sha256:577ec3d514700203d07a8b14ac9238e2c8bf7565969f9d3bddf5dac1c60c43b7
