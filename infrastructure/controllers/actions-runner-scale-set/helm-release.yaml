@@ -17,5 +17,5 @@ spec:
       spec:
         containers:
           - name: runner
-            image: ghcr.io/actions/actions-runner:sha256:bdd470624ce28f5c3aa44e3fa0b7776c6885dd8d5b0ff9d98218ae42fee993a0
+            image: ghcr.io/actions/actions-runner:sha256-8c3f5970b8ceb90cbd3e89b80c6806bb74d9c31686e9177c743323a4539d12f5
             command: ["/home/runner/run.sh"]
