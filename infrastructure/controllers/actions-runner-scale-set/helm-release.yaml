@@ -13,3 +13,9 @@ spec:
     runnerScaleSetName: arc-runner-set
     githubConfigUrl: https://github.com/icutum/infra
     githubConfigSecret: actions-runner-scale-set-github-token
+    template:
+      spec:
+        containers:
+          - name: runner
+            image: ghcr.io/actions/actions-runner:latest
+            command: ["/home/runner/run.sh"]
