@@ -7,14 +7,6 @@ It was deployed using the following Ansible playbook: https://github.com/k3s-io/
 
 I'm currently building this homelab to learn Kubernetes and experiment with it
 
-## ⚙️ Hardware
-
-I'm hosting all my virtualized nodes in a custom built server made of parts from my old gaming PC
-
-| CPU      | RAM   | OS           |
-| -------- | ----- | ------------ |
-| 16 cores | 64GiB | Proxmox VE 9 |
-
 ## 🖥️ Nodes
 
 My cluster consists of three server nodes forming a HA etcd control plane (tainted with `NoSchedule`) and two agent nodes. 
@@ -35,4 +27,3 @@ Secrets are managed with [SOPS](https://getsops.io/) in combination with [age](h
 ## 🤖 Automation
 
 [Renovate](https://github.com/renovatebot/renovate) scans the repository and opens pull requests for new container image and Helm release versions
-
