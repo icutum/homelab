@@ -3,19 +3,7 @@
   "extends": [
     "config:recommended"
   ],
-  "flux": {
-    "managerFilePatterns": [
-      "/\\.yaml$/"
-    ]
-  },
-  "helm-values": {
-    "managerFilePatterns": [
-      "/\\.yaml$/"
-    ]
-  },
-  "kubernetes": {
-    "managerFilePatterns": [
-      "/\\.yaml$/"
-    ]
-  }
+  "enabledManagers": [
+    "kubernetes"
+  ]
 }
