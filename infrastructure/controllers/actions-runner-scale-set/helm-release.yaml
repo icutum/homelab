@@ -13,8 +13,3 @@ spec:
     runnerScaleSetName: arc-runner-set
     githubConfigUrl: https://github.com/icutum/infra
     githubConfigSecret: actions-runner-scale-set-github-token
-    template:
-      spec:
-        containers:
-          - name: runner
-            image: ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner:v2.333.1-ubuntu-24.04-39934ce
