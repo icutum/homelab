@@ -17,9 +17,9 @@ spec:
                     apiTokenSecretRef:
                         name: cert-manager-cloudflare-token
                         key: cloudflare-token
-                selector:
-                    dnsZones:
-                        - icutum.es
+              selector:
+                dnsZones:
+                    - icutum.es
 sops:
     age:
         - recipient: age14e9960ys3tqpnr40memrdp8uac0f86wv326ykwkwrufgrv4a5dtsd58zd2
