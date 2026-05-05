@@ -8,7 +8,7 @@ rules:
   line-length: disable
   truthy:
     ignore:
-      - ./github/workflows/*
+      - .github/workflows/*
   comments:
     ignore:
-      - ./github/workflows/*
+      - .github/workflows/*
