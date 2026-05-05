@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 10m0s
   chart:
-    spec: 
+    spec:
       chart: external-dns
       version: 1.21.1
       sourceRef:
