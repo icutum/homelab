@@ -5,11 +5,13 @@ on:
   pull_request:
     paths:
       - "**/*.yaml"
+      - ".yamllint"
   push:
     branches:
       - main
     paths:
       - "**/*.yaml"
+      - ".yamllint"
 
 permissions: {}
 
