@@ -12,14 +12,14 @@ spec:
             name: cert-manager-cluster-issuer
         solvers:
             - dns01:
-                cloudflare:
-                    email: ENC[AES256_GCM,data:m2C4N05SEpiGfoQrw7A/Fvg9,iv:1/+wlfmp/uOeqSgNF4kXV8GoNPXsti9Kd1buey8QPXc=,tag:hx2NW7rBW5Qn/hAakA0xcg==,type:str]
-                    apiTokenSecretRef:
-                        name: cert-manager-cloudflare-token
-                        key: cloudflare-token
+                  cloudflare:
+                      email: ENC[AES256_GCM,data:m2C4N05SEpiGfoQrw7A/Fvg9,iv:1/+wlfmp/uOeqSgNF4kXV8GoNPXsti9Kd1buey8QPXc=,tag:hx2NW7rBW5Qn/hAakA0xcg==,type:str]
+                      apiTokenSecretRef:
+                          name: cert-manager-cloudflare-token
+                          key: cloudflare-token
               selector:
-                dnsZones:
-                    - icutum.es
+                  dnsZones:
+                      - icutum.es
 sops:
     age:
         - recipient: age14e9960ys3tqpnr40memrdp8uac0f86wv326ykwkwrufgrv4a5dtsd58zd2
