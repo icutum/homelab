@@ -1,5 +1,5 @@
 ---
-name: test
+name: validate
 
 on:
   pull_request:
@@ -15,7 +15,7 @@ permissions: {}
 
 jobs:
   test:
-    name: Test
+    name: Validate manifests
     runs-on: ubuntu-latest
     permissions:
       contents: read
