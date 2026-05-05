@@ -3,3 +3,6 @@ extends: default
 
 ignore: |
   clusters/homelab/flux-system/
+
+rules:
+  line-length: disable
