@@ -6,3 +6,9 @@ ignore: |
 
 rules:
   line-length: disable
+  truthy:
+    ignore:
+      - ./github/workflows/*
+  comments:
+    ignore:
+      - ./github/workflows/*
