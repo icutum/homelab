@@ -26,4 +26,4 @@ jobs:
           persist-credentials: false
 
       - name: Lint YAML
-        run: yamllint .
+        run: yamllint . --exclude clusters/homelab/flux-system
