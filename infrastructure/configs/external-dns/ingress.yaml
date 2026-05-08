@@ -24,3 +24,55 @@ spec:
     - hosts:
         - proxmox.local.icutum.es
       secretName: proxmox-local-icutum-es-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: external-dns-pihole-primary-ingress
+  namespace: external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: pihole-primary.local.icutum.es
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: pihole-primary.local.icutum.es
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: external-dns-pihole-primary-service
+                port:
+                  number: 8006
+  tls:
+    - hosts:
+        - pihole-primary.local.icutum.es
+      secretName: pihole-primary-local-icutum-es-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: external-dns-pihole-secondary-ingress
+  namespace: external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: pihole-secondary.local.icutum.es
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: pihole-secondary.local.icutum.es
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: external-dns-pihole-secondary-service
+                port:
+                  number: 8006
+  tls:
+    - hosts:
+        - pihole-secondary.local.icutum.es
+      secretName: pihole-secondary-local-icutum-es-tls

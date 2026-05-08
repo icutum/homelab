@@ -14,3 +14,35 @@ ports:
 endpoints:
   - addresses:
       - 192.168.1.2
+---
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: external-dns-pihole-endpointslice
+  namespace: external-dns
+  labels:
+    kubernetes.io/service-name: external-dns-pihole-primary-service
+addressType: IPv4
+ports:
+  - name: http
+    protocol: TCP
+    port: 80
+endpoints:
+  - addresses:
+      - 192.168.1.98
+---
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: external-dns-pihole-endpointslice
+  namespace: external-dns
+  labels:
+    kubernetes.io/service-name: external-dns-pihole-secondary-service
+addressType: IPv4
+ports:
+  - name: http
+    protocol: TCP
+    port: 80
+endpoints:
+  - addresses:
+      - 192.168.1.99

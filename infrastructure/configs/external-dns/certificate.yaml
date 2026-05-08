@@ -12,3 +12,31 @@ spec:
   commonName: "proxmox.local.icutum.es"
   dnsNames:
     - "proxmox.local.icutum.es"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: external-dns-pihole-primary-certificate
+  namespace: external-dns
+spec:
+  secretName: pihole-primary-local-icutum-es-tls
+  issuerRef:
+    name: cert-manager-cluster-issuer
+    kind: ClusterIssuer
+  commonName: "pihole-primary.local.icutum.es"
+  dnsNames:
+    - "pihole-primary.local.icutum.es"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: external-dns-pihole-secondary-certificate
+  namespace: external-dns
+spec:
+  secretName: pihole-secondary-local-icutum-es-tls
+  issuerRef:
+    name: cert-manager-cluster-issuer
+    kind: ClusterIssuer
+  commonName: "pihole-secondary.local.icutum.es"
+  dnsNames:
+    - "pihole-secondary.local.icutum.es"
