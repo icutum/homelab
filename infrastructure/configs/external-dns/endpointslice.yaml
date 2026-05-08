@@ -18,7 +18,7 @@ endpoints:
 apiVersion: discovery.k8s.io/v1
 kind: EndpointSlice
 metadata:
-  name: external-dns-pihole-endpointslice
+  name: external-dns-pihole-primary-endpointslice
   namespace: external-dns
   labels:
     kubernetes.io/service-name: external-dns-pihole-primary-service
@@ -34,7 +34,7 @@ endpoints:
 apiVersion: discovery.k8s.io/v1
 kind: EndpointSlice
 metadata:
-  name: external-dns-pihole-endpointslice
+  name: external-dns-pihole-secondary-endpointslice
   namespace: external-dns
   labels:
     kubernetes.io/service-name: external-dns-pihole-secondary-service
