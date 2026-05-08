@@ -45,7 +45,7 @@ spec:
               service:
                 name: external-dns-pihole-primary-service
                 port:
-                  number: 8006
+                  number: 80
   tls:
     - hosts:
         - pihole-primary.local.icutum.es
@@ -71,7 +71,7 @@ spec:
               service:
                 name: external-dns-pihole-secondary-service
                 port:
-                  number: 8006
+                  number: 80
   tls:
     - hosts:
         - pihole-secondary.local.icutum.es
