@@ -22,7 +22,7 @@ spec:
     domainFilters:
       - local.icutum.es
     extraArgs:
-      - --pihole-server=http://192.168.1.99
+      - --pihole-server=http://192.168.1.98
       - --pihole-api-version=6
       - --pihole-tls-skip-verify
     registry: noop
