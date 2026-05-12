@@ -6,5 +6,6 @@ resources:
   - ./traefik
   - ./longhorn
   - ./external-dns
+  - ./cloudnative-pg
   - ./actions-runner-controller
   - ./actions-runner-scale-set
