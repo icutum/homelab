@@ -18,3 +18,5 @@ spec:
     defaultSettings:
       allowCollectingLonghornUsageMetrics: false
       defaultReplicaCount: 2
+      persistence:
+        defaultClassReplicaCount: 2
