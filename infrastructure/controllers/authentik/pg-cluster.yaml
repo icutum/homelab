@@ -10,5 +10,7 @@ spec:
     initdb:
       database: authentik
       owner: authentik
+      secret:
+        name: authentik-db-secret
   storage:
     size: 16Gi
