@@ -16,12 +16,6 @@ spec:
         namespace: flux-system
   values:
     global:
-      env:
-        - name: AUTHENTIK_POSTGRESQL__PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: authentik-db-secret
-              key: password
       envFrom:
         - secretRef:
             name: authentik-secret
