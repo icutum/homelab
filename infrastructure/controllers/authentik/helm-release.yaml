@@ -22,7 +22,3 @@ spec:
     authentik:
       postgresql:
         host: authentik-cluster-rw.authentik.svc.cluster.local
-    server:
-      replicas: 2
-    worker:
-      replicas: 2

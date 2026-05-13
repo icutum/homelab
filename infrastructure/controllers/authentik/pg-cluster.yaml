@@ -5,7 +5,6 @@ metadata:
   name: authentik-cluster
   namespace: authentik
 spec:
-  instances: 2
   bootstrap:
     initdb:
       database: authentik
