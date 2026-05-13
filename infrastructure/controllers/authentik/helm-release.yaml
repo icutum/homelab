@@ -15,11 +15,13 @@ spec:
         name: authentik-helmrepository
         namespace: flux-system
   values:
+    global:
+      envFrom:
+        - secretRef:
+            name: authentik-secret
     authentik:
       postgresql:
         host: authentik-cluster-rw.authentik.svc.cluster.local
-        name: authentik
-        user: authentik
     server:
       replicas: 2
     worker:
