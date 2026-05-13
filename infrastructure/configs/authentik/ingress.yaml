@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: authentik-ingress
+  namespace: authentik
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: authentik.local.icutum.es
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: authentik.local.icutum.es
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: authentik-helmrelease-server
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - authentik.local.icutum.es
+      secretName: authentik-local-icutum-es-tls

@@ -6,3 +6,4 @@ resources:
   - ./traefik
   - ./longhorn
   - ./external-dns
+  - ./authentik
