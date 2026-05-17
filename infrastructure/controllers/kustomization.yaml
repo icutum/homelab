@@ -7,6 +7,5 @@ resources:
   - ./longhorn
   - ./external-dns
   - ./cloudnative-pg
-  - ./authentik
   - ./actions-runner-controller
   - ./actions-runner-scale-set
