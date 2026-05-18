@@ -7,5 +7,6 @@ resources:
   - ./longhorn
   - ./external-dns
   - ./cloudnative-pg
+  - ./keycloak
   - ./actions-runner-controller
   - ./actions-runner-scale-set

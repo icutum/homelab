@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: keycloak-helmrelease
+  namespace: keycloak
+spec:
+  interval: 10m0s
+  chart:
+    spec:
+      chart: app-template
+      version: 5.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: keycloak-helmrepository
+        namespace: flux-system
+  values:
+    controllers:
+      keycloak:
+        containers:
+          app:
+            image:
+              repository: quay.io/keycloak/keycloak
+              tag: 26.6.1
+            args:
+              - start
+              - --db
+              - postgres
+            env:
+              KC_BOOTSTRAP_ADMIN_USERNAME: "admin"
+              KC_BOOTSTRAP_ADMIN_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-admin-secret
+                    key: password
+              KC_DB_URL:
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-db-secret
+                    key: jdbc-uri
+              KC_HOSTNAME: "https://keycloak.local.icutum.es"
+              KC_HOSTNAME_STRICT: "true"
+              KC_HTTP_ENABLED: "true"
+              KC_PROXY_HEADERS: xforwarded
+    service:
+      app:
+        controller: keycloak
+        ports:
+          http:
+            port: 80
