@@ -38,6 +38,16 @@ spec:
                   secretKeyRef:
                     name: keycloak-db-secret
                     key: jdbc-uri
+              KC_DB_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-db-secret
+                    key: username
+              KC_DB_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-db-secret
+                    key: password
               KC_HOSTNAME: "https://keycloak.local.icutum.es"
               KC_HOSTNAME_STRICT: "true"
               KC_HTTP_ENABLED: "true"
