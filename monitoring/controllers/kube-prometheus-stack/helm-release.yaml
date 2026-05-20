@@ -15,6 +15,12 @@ spec:
         name: kube-prometheus-stack-helmrepository
         namespace: flux-system
   values:
+    kubeControllerManager:
+      jobNameOverride: "k3s-server"
+    kubeProxy:
+      jobNameOverride: "k3s-server"
+    kubeScheduler:
+      jobNameOverride: "k3s-server"
     grafana:
       admin:
         existingSecret: kube-prometheus-stack-secret-grafana
