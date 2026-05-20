@@ -40,10 +40,11 @@ spec:
         existingSecret: kube-prometheus-stack-secret-grafana
     prometheus:
       prometheusSpec:
+        retentionSize: 14.4GiB
         storageSpec:
           volumeClaimTemplate:
             spec:
               storageClassName: longhorn
               resources:
                 requests:
-                  storage: 1Gi
+                  storage: 16Gi
