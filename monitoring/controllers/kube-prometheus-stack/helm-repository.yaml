@@ -6,4 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  url: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
+  url: oci://ghcr.io/prometheus-community/charts
