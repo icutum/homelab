@@ -14,3 +14,13 @@ spec:
         kind: HelmRepository
         name: kube-prometheus-stack-helmrepository
         namespace: flux-system
+  values:
+    prometheus:
+      prometheusSpec:
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              resources:
+                requests:
+                  storage: 16Gi
