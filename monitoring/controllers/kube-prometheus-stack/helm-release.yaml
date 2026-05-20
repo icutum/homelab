@@ -15,12 +15,26 @@ spec:
         name: kube-prometheus-stack-helmrepository
         namespace: flux-system
   values:
+    kubeEtcd:
+      endpoints:
+        - 192.168.1.3
+        - 192.168.1.4
+        - 192.168.1.5
     kubeControllerManager:
-      jobNameOverride: "k3s-server"
+      endpoints:
+        - 192.168.1.3
+        - 192.168.1.4
+        - 192.168.1.5
     kubeProxy:
-      jobNameOverride: "k3s-server"
+      endpoints:
+        - 192.168.1.3
+        - 192.168.1.4
+        - 192.168.1.5
     kubeScheduler:
-      jobNameOverride: "k3s-server"
+      endpoints:
+        - 192.168.1.3
+        - 192.168.1.4
+        - 192.168.1.5
     grafana:
       admin:
         existingSecret: kube-prometheus-stack-secret-grafana
