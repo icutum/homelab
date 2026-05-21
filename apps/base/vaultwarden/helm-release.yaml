@@ -28,6 +28,8 @@ spec:
         ports:
           http:
             port: 80
+        env:
+          DOMAIN: https://vaultwarden.local.icutum.es
     persistence:
       storage:
         existingClaim: vaultwarden-pvc
