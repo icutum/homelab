@@ -12,3 +12,5 @@ rules:
   comments:
     ignore: |
       .github/workflows/*
+  indentation:
+    spaces: 2
