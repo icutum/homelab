@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: checkmk-ingress
+  namespace: checkmk
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: checkmk.local.icutum.es
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: checkmk.local.icutum.es
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: checkmk-helmrelease
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - checkmk.local.icutum.es
+      secretName: checkmk-local-icutum-es-tls
