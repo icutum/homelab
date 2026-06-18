@@ -20,7 +20,7 @@ spec:
               service:
                 name: checkmk-helmrelease
                 port:
-                  number: 80
+                  number: 5000
   tls:
     - hosts:
         - checkmk.local.icutum.es
