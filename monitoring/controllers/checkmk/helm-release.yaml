@@ -21,7 +21,7 @@ spec:
           app:
             image:
               repository: checkmk/check-mk-community
-              tag: 2.5.0p7
+              tag: 2.5.0
             envFrom:
               - secretRef:
                   name: checkmk-secret
