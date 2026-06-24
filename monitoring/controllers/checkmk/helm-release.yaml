@@ -38,3 +38,8 @@ spec:
         existingClaim: checkmk-pvc
         globalMounts:
           - path: /omd/sites
+      tmpfs:
+        type: emptyDir
+        medium: Memory
+        globalMounts:
+          - path: /opt/omd/sites/cmk/tmp
