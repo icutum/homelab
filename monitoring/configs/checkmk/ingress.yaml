@@ -18,7 +18,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: checkmk-helmrelease
+                name: checkmk-helmrelease-app
                 port:
                   number: 5000
   tls:
