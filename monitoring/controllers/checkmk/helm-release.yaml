@@ -31,8 +31,13 @@ spec:
         ports:
           http:
             port: 5000
+      agent:
+        controller: checkmk
+        type: NodePort
+        ports:
           agent:
             port: 8000
+            nodePort: 30800
     persistence:
       storage:
         existingClaim: checkmk-pvc
