@@ -21,7 +21,6 @@ spec:
       - ingress
     domainFilters:
       - local.mariosl.dev
-      - local.icutum.es
     extraArgs:
       - --pihole-server=http://192.168.1.10
       - --pihole-tls-skip-verify
@@ -56,7 +55,6 @@ spec:
       - ingress
     domainFilters:
       - local.mariosl.dev
-      - local.icutum.es
     extraArgs:
       - --pihole-server=http://192.168.1.11
       - --pihole-tls-skip-verify
