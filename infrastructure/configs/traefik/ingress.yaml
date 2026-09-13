@@ -5,13 +5,13 @@ metadata:
   name: traefik-ingress-dashboard
   namespace: traefik
   annotations:
-    external-dns.kubernetes.io/hostname: traefik.local.icutum.es
+    external-dns.kubernetes.io/hostname: traefik.local.mariosl.dev
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
   ingressClassName: traefik
   rules:
-    - host: traefik.local.icutum.es
+    - host: traefik.local.mariosl.dev
       http:
         paths:
           - path: /
@@ -23,5 +23,5 @@ spec:
                   number: 8080
   tls:
     - hosts:
-        - traefik.local.icutum.es
-      secretName: traefik-local-icutum-es-tls
+        - traefik.local.mariosl.dev
+      secretName: traefik-local-mariosl-dev-tls
