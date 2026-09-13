@@ -5,7 +5,7 @@ metadata:
   name: traefik-ingress-dashboard
   namespace: traefik
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: traefik.local.icutum.es
+    external-dns.kubernetes.io/hostname: traefik.local.icutum.es
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:

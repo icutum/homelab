@@ -5,7 +5,7 @@ metadata:
   name: checkmk-ingress
   namespace: checkmk
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: checkmk.local.icutum.es
+    external-dns.kubernetes.io/hostname: checkmk.local.icutum.es
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
