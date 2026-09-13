@@ -5,7 +5,7 @@ metadata:
   name: external-dns-proxmox-ingress
   namespace: external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: proxmox.local.icutum.es
+    external-dns.kubernetes.io/hostname: proxmox.local.icutum.es
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
@@ -32,7 +32,7 @@ metadata:
   name: external-dns-pihole-primary-ingress
   namespace: external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: pihole-primary.local.icutum.es
+    external-dns.kubernetes.io/hostname: pihole-primary.local.icutum.es
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
@@ -59,7 +59,7 @@ metadata:
   name: external-dns-pihole-secondary-ingress
   namespace: external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: pihole-secondary.local.icutum.es
+    external-dns.kubernetes.io/hostname: pihole-secondary.local.icutum.es
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:

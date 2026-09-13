@@ -5,7 +5,7 @@ metadata:
   name: kube-prometheus-stack-grafana-ingress
   namespace: kube-prometheus-stack
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: grafana.local.icutum.es
+    external-dns.kubernetes.io/hostname: grafana.local.icutum.es
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
