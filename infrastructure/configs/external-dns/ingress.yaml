@@ -5,13 +5,13 @@ metadata:
   name: external-dns-proxmox-ingress
   namespace: external-dns
   annotations:
-    external-dns.kubernetes.io/hostname: proxmox.local.icutum.es
+    external-dns.kubernetes.io/hostname: proxmox.local.mariosl.dev
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
   ingressClassName: traefik
   rules:
-    - host: proxmox.local.icutum.es
+    - host: proxmox.local.mariosl.dev
       http:
         paths:
           - path: /
@@ -23,8 +23,8 @@ spec:
                   number: 8006
   tls:
     - hosts:
-        - proxmox.local.icutum.es
-      secretName: proxmox-local-icutum-es-tls
+        - proxmox.local.mariosl.dev
+      secretName: proxmox-local-mariosl-dev-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -32,13 +32,13 @@ metadata:
   name: external-dns-pihole-primary-ingress
   namespace: external-dns
   annotations:
-    external-dns.kubernetes.io/hostname: pihole-primary.local.icutum.es
+    external-dns.kubernetes.io/hostname: pihole-primary.local.mariosl.dev
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
   ingressClassName: traefik
   rules:
-    - host: pihole-primary.local.icutum.es
+    - host: pihole-primary.local.mariosl.dev
       http:
         paths:
           - path: /
@@ -50,8 +50,8 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - pihole-primary.local.icutum.es
-      secretName: pihole-primary-local-icutum-es-tls
+        - pihole-primary.local.mariosl.dev
+      secretName: pihole-primary-local-mariosl-dev-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -59,13 +59,13 @@ metadata:
   name: external-dns-pihole-secondary-ingress
   namespace: external-dns
   annotations:
-    external-dns.kubernetes.io/hostname: pihole-secondary.local.icutum.es
+    external-dns.kubernetes.io/hostname: pihole-secondary.local.mariosl.dev
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
   ingressClassName: traefik
   rules:
-    - host: pihole-secondary.local.icutum.es
+    - host: pihole-secondary.local.mariosl.dev
       http:
         paths:
           - path: /
@@ -77,5 +77,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - pihole-secondary.local.icutum.es
-      secretName: pihole-secondary-local-icutum-es-tls
+        - pihole-secondary.local.mariosl.dev
+      secretName: pihole-secondary-local-mariosl-dev-tls

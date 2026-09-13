@@ -5,13 +5,13 @@ metadata:
   name: vaultwarden-ingress
   namespace: vaultwarden
   annotations:
-    external-dns.kubernetes.io/hostname: vaultwarden.local.icutum.es
+    external-dns.kubernetes.io/hostname: vaultwarden.local.mariosl.dev
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
   ingressClassName: traefik
   rules:
-    - host: vaultwarden.local.icutum.es
+    - host: vaultwarden.local.mariosl.dev
       http:
         paths:
           - path: /
@@ -23,5 +23,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - vaultwarden.local.icutum.es
-      secretName: vaultwarden-local-icutum-es-tls
+        - vaultwarden.local.mariosl.dev
+      secretName: vaultwarden-local-mariosl-dev-tls

@@ -5,13 +5,13 @@ metadata:
   name: longhorn-ingress
   namespace: longhorn
   annotations:
-    external-dns.kubernetes.io/hostname: longhorn.local.icutum.es
+    external-dns.kubernetes.io/hostname: longhorn.local.mariosl.dev
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: cert-manager-cluster-issuer
 spec:
   ingressClassName: traefik
   rules:
-    - host: longhorn.local.icutum.es
+    - host: longhorn.local.mariosl.dev
       http:
         paths:
           - path: /
@@ -23,5 +23,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - longhorn.local.icutum.es
-      secretName: longhorn-local-icutum-es-tls
+        - longhorn.local.mariosl.dev
+      secretName: longhorn-local-mariosl-dev-tls

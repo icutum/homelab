@@ -23,7 +23,7 @@ spec:
               repository: vaultwarden/server
               tag: 1.37.3
             env:
-              DOMAIN: https://vaultwarden.local.icutum.es
+              DOMAIN: https://vaultwarden.local.mariosl.dev
     service:
       app:
         controller: vaultwarden

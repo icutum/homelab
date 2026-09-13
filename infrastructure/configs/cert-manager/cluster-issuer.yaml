@@ -7,32 +7,31 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: ENC[AES256_GCM,data:9oFLXiylJdHBXbUDV4wquiqP,iv:G3C1ZMQKgmvXDy9OaQkClZmpTfHLYIAIGXzvsJI9r6s=,tag:imILAKhpb1p8cAglFleEwg==,type:str]
+    email: ENC[AES256_GCM,data:fInHfkU2Ap68+pIv2xBW8A0k,iv:84WoMWxl1NVsElVlOjnMmsN9P3Mx/i4SewZNcMrqzts=,tag:C8GV1vs/mLl4ykSHuy2hVg==,type:str]
     privateKeySecretRef:
       name: cert-manager-cluster-issuer
     solvers:
       - dns01:
           cloudflare:
-            email: ENC[AES256_GCM,data:WnDuY2R1QXU7R2gwbA82jB8i,iv:PCmT7tcp6UQGdyvKsDtyNoeG/W5ooAV0dfO33vL96PY=,tag:b+kzo6XpTwhI3sETyH3WjA==,type:str]
+            email: ENC[AES256_GCM,data:xXopH9trrZT5AAiF66erm0ns,iv:aHWvw2qXURbse+wGDsYGv726MYM20Q5VPQP8FBwneLk=,tag:M1ZejfUcozrXFSoVvPuwJg==,type:str]
             apiTokenSecretRef:
               name: cert-manager-cloudflare-token
               key: cloudflare-token
         selector:
           dnsZones:
-            - icutum.es
             - mariosl.dev
 sops:
   age:
     - recipient: age14e9960ys3tqpnr40memrdp8uac0f86wv326ykwkwrufgrv4a5dtsd58zd2
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBzTStIZXdzL2E0ekZYSW5D
-        MzFrM1RFUVhTRWVSSnhiNklVSVQwNFNSSXpBCm9yRXk3ZEFVVVlyOGVoWm1zVUtD
-        RUpvZUwrc2tZMi9OMHo1dHp2YkpLNWsKLS0tIEtBaFJOWDlJNmtHUysrZmZTckRY
-        S2hBZkJ0elNjWXBLeDJqV2dteU5FYmcKcAP6N8Rn5wckD6KBctGUMmpQle6xe3Z3
-        Rjls9U5TEJ0TxSS9Ffbb+NhBXyjk/3J2HUf8YSseeZQ2SYhkQ7OFUw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTblpxVmx5dTc5R01LeHVl
+        bk1TeUMxVHFGQ2YyVlBGZGhKV3R3ZDIzSldrClZ1TEJrVmdqZW1NWFVTS2prZDVp
+        ZEU4aHUvaG1zcENVL2U3MHNWMzNyMm8KLS0tIGdBREdaOFU0MjM5SSt6UWkweUtx
+        K0Fkd3NVTklFcWpUU1FNQ29Vc3Z6bzgKGH3teWPCeMQKGE/J3gKY3kWXQXyr51rz
+        751CCFLxl48H+XR2qA3zKVgj9vwCKNokuRH7WwqWL3fHxo5OVj4/qg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-09-13T16:45:00Z"
-  mac: ENC[AES256_GCM,data:jBYA3DH/ws3Gdw9y5AroRUClljrCMWqcvF/cfk4L8fa5gN3jeLWPoDgFa83iyQmT0gwCeGNBkxxOnAPDIX4JSNbI8yc+jvUiR0wPZ22WonFX4NxkdEar2nNJvm+63dXFehjx2c5UQPHzNMGhP42BQRmu8y31qBbwyuQNvQ2nXdQ=,iv:IvgtKKf6vcggQDxruB9aKd0GcItagopY6lXnjsrWzrM=,tag:g0xKWPkB/Wpc1E+sB3FZqw==,type:str]
+  lastmodified: "2026-09-13T17:19:29Z"
+  mac: ENC[AES256_GCM,data:rC8+wia3+oDSjJM+W+AHP+aEjGMTQbmy3RrIkjq9QShgiN0Ye2ka1DfQ5aPld/az2cxHIDt5gFjW6RY4lv8r5KM9+JIxR0NJyMweNJOnxBQQYPL1P03PYxYorFsfx3BlKUpKH1zT/EveI26FS7BlaxsFh/5L+0VfzX5TN1x1qJU=,iv:7JjjIEvx6s0MvaYstWxC3M4cxYpZj+6yc+icebzp8Ow=,tag:+70L5H/ymLJvDdI7DvZoog==,type:str]
   encrypted_regex: ^(data|stringData|email)$
   version: 3.12.1
