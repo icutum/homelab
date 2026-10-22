@@ -42,9 +42,6 @@ spec:
           tls:
             enabled: true
             options: "default"
-        http3:
-          enabled: true
-          advertisedPort: 443
     ingressClass:
       name: traefik
     providers:
